@@ -1,2 +1,2 @@
-#Repository for CS LABS
-##Corețchi Mihai
+# Repository for CS LABS
+## Corețchi Mihai
