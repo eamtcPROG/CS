@@ -5,3 +5,6 @@
 .idea/workspace.xml
 .idea/vcs.xml
 *.idea
+.DS_Store
+.ds_store
+*/.DS_Store
