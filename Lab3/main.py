@@ -10,10 +10,12 @@ def validate_key(key):
 
 
 def create_matrix(key):
-    alphabet = "AĂÂBCDEFGHIÎJKLMNOPQRSȘTȚUVWXYZ"
+    alphabet = "AĂÂBCDEFGHIJKLMNOPQRSȘTȚUVWXYZ"
     matrix = []
 
     for char in key:
+        if char == 'Î':
+            char = 'Â'
         if char not in matrix:
             matrix.append(char)
 
@@ -21,14 +23,18 @@ def create_matrix(key):
         if char not in matrix:
             matrix.append(char)
 
-    return [matrix[i:i + 6] for i in range(0, 36, 6)]
+    return [matrix[i:i + 5] for i in range(0, 30, 5)]
 
+def print_matrix(m):
+    for line in m:
+        print(line)
 
 def find_position(matrix, char):
     for i in range(6):
-        for j in range(6):
+        for j in range(5):
             if matrix[i][j] == char:
                 return i, j
+
 
 
 def cipher_pair(matrix, a, b, encrypt=True):
@@ -37,9 +43,9 @@ def cipher_pair(matrix, a, b, encrypt=True):
 
     if row_a == row_b:
         if encrypt:
-            col_a, col_b = (col_a + 1) % 6, (col_b + 1) % 6
+            col_a, col_b = (col_a + 1) % 5, (col_b + 1) % 5
         else:
-            col_a, col_b = (col_a - 1) % 6, (col_b - 1) % 6
+            col_a, col_b = (col_a - 1) % 5, (col_b - 1) % 5
     elif col_a == col_b:
         if encrypt:
             row_a, row_b = (row_a + 1) % 6, (row_b + 1) % 6
@@ -89,6 +95,7 @@ if __name__ == "__main__":
             continue
 
         matrix = create_matrix(key)
+        print_matrix(matrix)
 
         if operation == 'encrypt':
             print("Encrypted text:", playfair_cipher(matrix, text))
