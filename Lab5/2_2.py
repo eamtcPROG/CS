@@ -1,5 +1,15 @@
 import random
-
+# p - prime
+# g = primitive root
+#Private a = 1<a<p-1
+#e=g^a mod p
+#Public (p,g,e)
+#en: 1<b<p-1
+#c1=g^b mod p
+#c2=m*e^b mod p
+#Dec
+#x=c1 ^ a mod p
+#m = c2 * x ^(p-1) mod p
 # Function for modular exponentiation
 def mod_exp(base, exponent, modulus):
     result = 1
@@ -32,17 +42,18 @@ x = random.randint(1, p - 2)
 # Public key
 y = mod_exp(g, x, p)
 
-# Convert "Coretchi Mihai" to Decimal
+
 message = "Coretchi Mihai"
 decimal_message = [ord(char) for char in message]
 
-# Encrypt Each Character in the Message
+
 encrypted_message = [encrypt(m, p, g, y) for m in decimal_message]
 
-# Decrypt Each Character in the Encrypted Message
+
 decrypted_message = [decrypt(c1, c2, p, x) for c1, c2 in encrypted_message]
 
-# Output
+
 print("Coretchi Mihai in Decimal Form: ", decimal_message)
-print("Decrypted Message in Decimal Form: ", decrypted_message)
 print("Encrypted Message: ", encrypted_message)
+print("Decrypted Message in Decimal Form: ", decrypted_message)
+

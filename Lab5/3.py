@@ -1,5 +1,11 @@
 import random
-
+#p - primie
+#g = primitive root
+# a and b in [1,p-1]
+#Pk = A=g^a mod p
+#B=g^b mod p
+#S A = B^a mod p
+#S B = A^b mod p
 # Function for modular exponentiation
 def mod_exp(base, exponent, modulus):
     result = 1
